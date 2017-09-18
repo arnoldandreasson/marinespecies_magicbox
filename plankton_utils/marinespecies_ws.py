@@ -23,8 +23,13 @@ class WormsWebservice(object):
             Parameters:
                 marine_only: limit to marine taxa. Default=true.
         """
-        aphia_id = self._wsdl_object.getAphiaID(scientific_name, 
-                                                marine_only)
+        try:
+            aphia_id = self._wsdl_object.getAphiaID(scientific_name, 
+                                                    marine_only)
+        except: # Retry if server is unstable.
+            aphia_id = self._wsdl_object.getAphiaID(scientific_name, 
+                                                    marine_only)
+            
         return aphia_id # Integer or None.
  
     def get_aphia_records(self, scientific_name, 
@@ -39,8 +44,13 @@ class WormsWebservice(object):
                 marine_only: limit to marine taxa. Default=true.
                 offset: starting recordnumber, when retrieving next chunck of (50) records. Default=1.
         """
-        worms_records = self._wsdl_object.getAphiaRecords(scientific_name, 
+        try:
+            worms_records = self._wsdl_object.getAphiaRecords(scientific_name, 
                                               like, fuzzy, marine_only, offset)
+        except: # Retry if server is unstable.
+            worms_records = self._wsdl_object.getAphiaRecords(scientific_name, 
+                                              like, fuzzy, marine_only, offset)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if worms_records:
@@ -52,16 +62,25 @@ class WormsWebservice(object):
          
     def get_aphia_name_by_id(self, aphia_id):
         """ Get the correct name for a given AphiaID. """
-        scientific_name = self._wsdl_object.getAphiaNameByID(aphia_id)
+        try:
+            scientific_name = self._wsdl_object.getAphiaNameByID(aphia_id)
+        except: # Retry if server is unstable.
+            scientific_name = self._wsdl_object.getAphiaNameByID(aphia_id)
+            
         return unicode(scientific_name) # String
  
     def get_aphia_record_by_id(self, aphia_id):
         """ Get the complete Aphia Record for a given AphiaID. """
-        worms_record = self._wsdl_object.getAphiaRecordByID(aphia_id)
+        try:
+            worms_record = self._wsdl_object.getAphiaRecordByID(aphia_id)
+        except: # Retry if server is unstable.
+            worms_record = self._wsdl_object.getAphiaRecordByID(aphia_id)
+            
         # Convert from SOAPs structType to Python.
         record = None
         if worms_record:
             record = dict((key, getattr(worms_record, key)) for key in worms_record._keys())
+            
         #
         return record
          
@@ -77,7 +96,11 @@ class WormsWebservice(object):
                 'ncbi': NCBI Taxonomy ID (Genbank)
                 'tsn': ITIS Taxonomic Serial Number
         """
-        worms_record = self._wsdl_object.getAphiaRecordByExtID(ext_id, ext_type)
+        try:
+            worms_record = self._wsdl_object.getAphiaRecordByExtID(ext_id, ext_type)
+        except: # Retry if server is unstable.
+            worms_record = self._wsdl_object.getAphiaRecordByExtID(ext_id, ext_type)
+            
         # Convert from SOAPs structType to Python.
         record = None
         if worms_record:
@@ -96,12 +119,21 @@ class WormsWebservice(object):
                 fuzzy: fuzzy matching. Default=true.
                 marine_only: limit to marine taxa. Default=true.
         """
-        worms_records = self._wsdl_object.getAphiaRecordsByNames(
+        try:
+            worms_records = self._wsdl_object.getAphiaRecordsByNames(
                                                     scientific_names,
                                                     like = 'false', # Exact match by default.
                                                     fuzzy= 'false', # Exact match by default.
                                                     marine_only= 'false', # Brackish species wanted.
                                                     )
+        except: # Retry if server is unstable.
+            worms_records = self._wsdl_object.getAphiaRecordsByNames(
+                                                    scientific_names,
+                                                    like = 'false', # Exact match by default.
+                                                    fuzzy= 'false', # Exact match by default.
+                                                    marine_only= 'false', # Brackish species wanted.
+                                                    )
+            
         # Convert from SOAPs structType to Python.
         name_records = []
         if worms_records:
@@ -122,7 +154,11 @@ class WormsWebservice(object):
                 like: add a '%'-sign before and after the input (SQL LIKE '%vernacular%' function). Default=false.
                 offset: starting record number, when retrieving next chunck of (50) records. Default=1.
         """
-        worms_records = self._wsdl_object.getAphiaRecordsByVernacular(vernacular, like, offset)
+        try:
+            worms_records = self._wsdl_object.getAphiaRecordsByVernacular(vernacular, like, offset)
+        except: # Retry if server is unstable.
+            worms_records = self._wsdl_object.getAphiaRecordsByVernacular(vernacular, like, offset)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if worms_records:
@@ -134,7 +170,11 @@ class WormsWebservice(object):
          
     def get_aphia_classification_by_id(self, aphia_id):
         """ Get the complete classification for one taxon. This also includes any sub or super ranks. """
-        worms_classification = self._wsdl_object.getAphiaClassificationByID(aphia_id)
+        try:
+            worms_classification = self._wsdl_object.getAphiaClassificationByID(aphia_id)
+        except: # Retry if server is unstable.
+            worms_classification = self._wsdl_object.getAphiaClassificationByID(aphia_id)
+            
         # Convert from SOAPs structType to Python. List instead of hierarchy.
         records = []
         if worms_classification:
@@ -151,7 +191,11 @@ class WormsWebservice(object):
  
     def get_sources_by_aphia_id(self, aphia_id):
         """ Get one or more sources/references including links, for one AphiaID. """
-        worms_sources = self._wsdl_object.getSourcesByAphiaID(aphia_id)
+        try:
+            worms_sources = self._wsdl_object.getSourcesByAphiaID(aphia_id)
+        except: # Retry if server is unstable.
+            worms_sources = self._wsdl_object.getSourcesByAphiaID(aphia_id)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if worms_sources:
@@ -163,7 +207,11 @@ class WormsWebservice(object):
  
     def get_aphia_synonyms_by_id(self, aphia_id):
         """ Get all synonyms for a given AphiaID. """
-        worms_records = self._wsdl_object.getAphiaSynonymsByID(aphia_id)
+        try:
+            worms_records = self._wsdl_object.getAphiaSynonymsByID(aphia_id)
+        except: # Retry if server is unstable.
+            worms_records = self._wsdl_object.getAphiaSynonymsByID(aphia_id)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if worms_records:
@@ -175,7 +223,11 @@ class WormsWebservice(object):
  
     def get_aphia_vernaculars_by_id(self, aphia_id):
         """ Get all vernaculars for a given AphiaID. """
-        vernaculars = self._wsdl_object.getAphiaVernacularsByID(aphia_id)
+        try:
+            vernaculars = self._wsdl_object.getAphiaVernacularsByID(aphia_id)
+        except: # Retry if server is unstable.
+            vernaculars = self._wsdl_object.getAphiaVernacularsByID(aphia_id)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if vernaculars:
@@ -193,7 +245,11 @@ class WormsWebservice(object):
                 offset: starting record number, when retrieving next chunck of (50) records. Default=1.
                 marine_only: limit to marine taxa. Default=true.
         """
-        worms_records = self._wsdl_object.getAphiaChildrenByID(aphia_id, offset, marine_only)
+        try:
+            worms_records = self._wsdl_object.getAphiaChildrenByID(aphia_id, offset, marine_only)
+        except: # Retry if server is unstable. 
+            worms_records = self._wsdl_object.getAphiaChildrenByID(aphia_id, offset, marine_only)
+            
         # Convert from SOAPs structType to Python.
         records = []
         if worms_records:
@@ -208,7 +264,7 @@ class WormsWebservice(object):
         try:
             if worms_dict[key]:
                 return unicode(worms_dict[key]).replace('\n', ' ').replace('\r', ' ') # Remove new lines.
-        except:
+        except: # Retry if server is unstable.
             print('Error when reading WORMS value for: ' + key + '.')
         return ''
  

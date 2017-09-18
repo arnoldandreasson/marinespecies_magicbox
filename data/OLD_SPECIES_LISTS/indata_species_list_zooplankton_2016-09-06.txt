@@ -1,0 +1,68 @@
+scientific_name	aphia_id
+Acartia	104108
+Acartia bifilosa	104249
+Acartia clausi	104251
+Acartia longiremis	104257
+Acartia tonsa	104262
+Appendicularia	
+Asplanchna	
+Balanus improvisus	
+Bivalvia	
+Bosmina	
+Bosmina coregoni maritima	106279
+Calanus	104152
+Calanus finmarchicus	
+Centropages	104159
+Centropages hamatus	
+Centropages typicus	
+Cercopagis	
+Ceriodaphnia	
+Clausocalanus	
+Copepoda	1080
+Corycaeus	
+Cyclopoida	1101
+Daphnia	
+Daphnia cristata	
+Daphnia cucullata	
+Daphnia galeata	
+Eurytemora	
+Eurytemora affinis	
+Evadne nordmanni	
+Filinia	
+Fritillaria	
+Gastropoda	
+Harpacticoida	1102
+Kellicottia longispina	
+Keratella cochlearis cochlearis	
+Keratella cochlearis recurvispina	
+Keratella cruciformis eichwaldi	
+Keratella quadrata	
+Limnocalanus macrurus	157674
+Mesocyclops leuckarti	234061
+Metridia	
+Microcalanus	104164
+Microsetella	
+Notholca	
+Oikopleura dioica	103407
+Oithona	106485
+Oithona similis	
+Oncaea	
+Paracalanus	104196
+Paracalanus parvus	
+Penilia avirostris	
+Pleopsis polyphemoides	
+Podon	
+Podon intermedius	
+Podon leuckartii	
+Podon leukarti	106277
+Podon polyphemoides	
+Podonidae	
+Polyphemus pediculus	
+Pseudocalanus	104165
+Pseudocalanus elongatus	
+Pseudocalanus minutus elongatus	149711
+Spionidae	
+Synchaeta	
+Temora	104241
+Temora longicornis	104878
+Trichocerca	

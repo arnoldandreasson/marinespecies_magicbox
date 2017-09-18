@@ -80,7 +80,10 @@ class WormsMarineSpecies(object):
                         species_dict = self.find_valid_taxon(scientific_name)
 #                     species_dict = self.find_valid_taxon(scientific_name, rank)
                 except Exception as e:
-                    print('Exception: ' + unicode(e))
+                    try:
+                        print('Exception: ' + unicode(e))
+                    except:
+                        print('Exception: Exception failed.')
                 #
 #                 if species_dict is None:
 #                     if taxon_id:
@@ -326,8 +329,10 @@ class WormsMarineSpecies(object):
         synonyms = self._worms_ws.get_aphia_synonyms_by_id(aphia_id)
         if synonyms:
             for synonym in synonyms:
-                if (synonym.get('scientificname', '') and synonym.get('authority', '')):
-                    synonym_list.append(unicode(synonym.get('scientificname', '')) + ' ' + unicode(synonym.get('authority', '')))
+#                 if (synonym.get('scientificname', '') and synonym.get('authority', '')):
+#                     synonym_list.append(unicode(synonym.get('scientificname', '')) + ' ' + unicode(synonym.get('authority', '')))
+                if synonym.get('scientificname', ''):
+                    synonym_list.append(unicode(synonym.get('scientificname', '')))
         worms_dict['worms_synonym_list'] = synonym_list
         #        
         return worms_dict

@@ -1,4 +1,0 @@
-scientific_name	aphia_id			
-Acanthoceras zachariasii				
-Acanthoica quattrospina				
-Achnanthes	149191			AnnTuri 2016-05-33
